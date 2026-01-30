@@ -35,6 +35,3 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
-
-# Project Specific
-server/uploads/*

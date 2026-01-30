@@ -38,4 +38,3 @@ lerna-debug.log*
 
 # Project Specific
 server/uploads/*
-!server/uploads/.gitkeep

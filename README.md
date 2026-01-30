@@ -45,7 +45,7 @@ Follow these steps to set up the project locally.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/mini-hrm.git
+git clone https://github.com/riqqqq/Human-Resource-Management.git
 cd mini-hrm
 ```
 
@@ -158,7 +158,3 @@ mini-hrm/
 - A `.vscode/settings.json` file is included to suppress this specific warning.
 
 ---
-
-## 📝 License
-
-This project is open-source and available under the [MIT License](LICENSE).

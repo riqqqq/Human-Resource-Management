@@ -1,6 +1,3 @@
--- Mini HRM Database Schema
--- Created: 2026-01-30
-
 CREATE DATABASE IF NOT EXISTS hrm_db;
 USE hrm_db;
 
@@ -31,4 +28,20 @@ CREATE TABLE IF NOT EXISTS attendance (
     FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
     INDEX idx_employee_date (employee_id, date),
     INDEX idx_date (date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Table: users
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'employee') DEFAULT 'employee',
+    employee_id INT DEFAULT NULL,
+    is_active TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY username (username),
+    INDEX idx_username (username),
+    INDEX idx_role (role),
+    INDEX idx_employee_id (employee_id),
+    FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

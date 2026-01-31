@@ -28,6 +28,7 @@ const setupDatabase = async () => {
                 name VARCHAR(100) NOT NULL,
                 position VARCHAR(50) NOT NULL,
                 join_date DATE NOT NULL,
+                salary DECIMAL(10, 2) DEFAULT 0.00,
                 status ENUM('active', 'inactive') DEFAULT 'active',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 INDEX idx_nik (nik),
@@ -67,6 +68,13 @@ const setupDatabase = async () => {
             console.log('   -> Added missing column: status');
         } catch (err) {
             if (err.code !== 'ER_DUP_FIELDNAME') console.warn('   -> Note: status check skipped');
+        }
+
+        try {
+            await connection.query("ALTER TABLE employees ADD COLUMN salary DECIMAL(10, 2) DEFAULT 0.00 AFTER join_date");
+            console.log('   -> Added missing column: salary to employees');
+        } catch (err) {
+            if (err.code !== 'ER_DUP_FIELDNAME') console.warn('   -> Note: salary check skipped');
         }
 
         // Create users table

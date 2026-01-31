@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS employees (
     name VARCHAR(100) NOT NULL,
     position VARCHAR(50) NOT NULL,
     join_date DATE NOT NULL,
+    salary DECIMAL(10, 2) DEFAULT 0.00,
     status ENUM('active', 'inactive') DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_nik (nik),

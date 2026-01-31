@@ -49,7 +49,7 @@ const employeeController = {
     // POST /employees - Create new employee
     async create(req, res) {
         try {
-            const { nik, name, position, join_date, status } = req.body;
+            const { nik, name, position, join_date, salary, status } = req.body;
 
             // Validation
             if (!nik || !name || !position || !join_date) {
@@ -73,6 +73,7 @@ const employeeController = {
                 name,
                 position,
                 join_date,
+                salary: salary || 0,
                 status: status || 'active'
             });
 
@@ -95,7 +96,7 @@ const employeeController = {
     async update(req, res) {
         try {
             const { id } = req.params;
-            const { nik, name, position, join_date, status } = req.body;
+            const { nik, name, position, join_date, salary, status } = req.body;
 
             // Check if employee exists
             const existingEmployee = await Employee.findById(id);
@@ -122,6 +123,7 @@ const employeeController = {
                 name: name || existingEmployee.name,
                 position: position || existingEmployee.position,
                 join_date: join_date || existingEmployee.join_date,
+                salary: salary !== undefined ? salary : existingEmployee.salary,
                 status: status || existingEmployee.status
             });
 

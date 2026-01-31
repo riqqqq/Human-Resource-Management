@@ -29,20 +29,20 @@ const Employee = {
 
     // Create new employee
     async create(data) {
-        const { nik, name, position, join_date, status = 'active' } = data;
+        const { nik, name, position, join_date, salary = 0, status = 'active' } = data;
         const [result] = await pool.query(
-            'INSERT INTO employees (nik, name, position, join_date, status) VALUES (?, ?, ?, ?, ?)',
-            [nik, name, position, join_date, status]
+            'INSERT INTO employees (nik, name, position, join_date, salary, status) VALUES (?, ?, ?, ?, ?, ?)',
+            [nik, name, position, join_date, salary, status]
         );
         return { id: result.insertId, ...data };
     },
 
     // Update employee
     async update(id, data) {
-        const { nik, name, position, join_date, status } = data;
+        const { nik, name, position, join_date, salary, status } = data;
         const [result] = await pool.query(
-            'UPDATE employees SET nik = ?, name = ?, position = ?, join_date = ?, status = ? WHERE id = ?',
-            [nik, name, position, join_date, status, id]
+            'UPDATE employees SET nik = ?, name = ?, position = ?, join_date = ?, salary = ?, status = ? WHERE id = ?',
+            [nik, name, position, join_date, salary, status, id]
         );
         return result.affectedRows > 0;
     },

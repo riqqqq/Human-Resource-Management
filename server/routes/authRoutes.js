@@ -7,7 +7,7 @@ const authController = require('../controllers/authController');
 router.post('/login', login);
 router.post('/register', authController.register);
 
-// Protected routes (admin only)
+// Protected routes
 router.get('/users', verifyToken, authorizeRole(['admin']), authController.getAllUsers);
 router.get('/users/pending', verifyToken, authorizeRole(['admin']), authController.getPendingUsers);
 router.put('/users/:id/approve', verifyToken, authorizeRole(['admin']), authController.approveUser);
